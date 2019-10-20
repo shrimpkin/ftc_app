@@ -101,7 +101,7 @@ public class TryingToMove extends OpMode
         //Doing the math to find the power value we need to set
         float temp = (float) (forward* (Math.cos(clockwise)) + right* (Math.sin(clockwise)));
         right = (float) ( -forward* (Math.sin(clockwise)) + right*(Math.cos(clockwise)));
-        forward = (float) temp;
+        forward = temp;
 
         float front_left = forward + clockwise + right;
         float front_right = forward - clockwise - right;
@@ -131,6 +131,8 @@ public class TryingToMove extends OpMode
         frontRightWheel.setPower(rear_left);
         backRightWheel.setPower(-rear_right);
 
+
+        //code for sucking in a brick, a is in, b is stop, x is out
         boolean isA = gamepad2.a;
 
         boolean isB = gamepad2.b;
