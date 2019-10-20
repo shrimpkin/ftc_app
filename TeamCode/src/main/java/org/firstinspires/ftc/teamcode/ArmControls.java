@@ -86,25 +86,28 @@ public class ArmControls extends OpMode
          *used these two terminals just to test the arm movements.
          **/
 
+
         frontLeftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontLeftWheel.setTargetPosition(255);
         frontLeftWheel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
 
-
         //Accessing left joy stick on gamepad1(NOTE: This can be changed to gamepad2 in the future)
-        double leftJoy = -(gamepad1.left_stick_y)/0.5;
+        double leftJoy = -(gamepad1.left_stick_y/2.0);
         //Accessing right joy stick on gamepad1 (NOTE: This can be changed to gamepad2 in the future)
-        double rightJoy = -(gamepad1.right_stick_y)/0.5;
+        double rightJoy = -(gamepad1.right_stick_y/0.5);
 
         //sending power to frontLeftWheel (NOTE: will change to lowerArmMotor)
         frontLeftWheel.setPower(leftJoy);
         //sending power to frontRightWheel(NOTE: will change to lowerArmMotor)
         frontRightWheel.setPower(rightJoy);
+        double leftPower = frontLeftWheel.getPower();
 
         telemetry.addData("Output:", log);
         telemetry.addData("left Joy:", leftJoy);
+        telemetry.addData("right Joy", rightJoy);
+        telemetry.addData("right Power", leftPower);
 
 
     }
