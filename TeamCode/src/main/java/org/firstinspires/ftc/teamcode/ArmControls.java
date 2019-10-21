@@ -94,20 +94,22 @@ public class ArmControls extends OpMode
 
 
         //Accessing left joy stick on gamepad1(NOTE: This can be changed to gamepad2 in the future)
-        double leftJoy = -(gamepad1.left_stick_y/2.0);
+        double leftJoy = -(gamepad1.left_stick_y);
         //Accessing right joy stick on gamepad1 (NOTE: This can be changed to gamepad2 in the future)
-        double rightJoy = -(gamepad1.right_stick_y/0.5);
+        double rightJoy = -(gamepad1.right_stick_y);
 
         //sending power to frontLeftWheel (NOTE: will change to lowerArmMotor)
         frontLeftWheel.setPower(leftJoy);
         //sending power to frontRightWheel(NOTE: will change to lowerArmMotor)
         frontRightWheel.setPower(rightJoy);
         double leftPower = frontLeftWheel.getPower();
+        double rightPower = frontRightWheel.getPower();
 
         telemetry.addData("Output:", log);
         telemetry.addData("left Joy:", leftJoy);
         telemetry.addData("right Joy", rightJoy);
-        telemetry.addData("right Power", leftPower);
+        telemetry.addData("left Power", leftPower);
+        telemetry.addData("right Power", rightPower);
 
 
     }
