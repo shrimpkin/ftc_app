@@ -74,9 +74,7 @@ public class ServosMoving extends OpMode
      */
     @Override
     public void init() {
-
         fingers = hardwareMap.servo.get("servo");
-
     }
 
     /*
@@ -85,8 +83,7 @@ public class ServosMoving extends OpMode
     @Override
     public void loop() {
         //Accessing Gamepad joystick
-        double left_joystike_y = gamepad1.left_stick_y;
-        servoPosition = left_joystike_y;
+        double servoPosition = gamepad1.left_stick_y;
         boolean IsA = gamepad1.a;
         boolean IsB = gamepad1.b;
         boolean pressA = false;
@@ -98,17 +95,20 @@ public class ServosMoving extends OpMode
             pressB = true;
         }
         // don't touch code!!!!! (that means you sadiq! lol)
+        String isAWork = "A is not working";
+        String isBWork = "B is not working";
         if(pressA) {
-            log = "A is working";
+            isAWork = "A is working";
+            //move inward towards block
             fingers.setPosition(0.3);
-        }
-
-        if(pressB) {
-            log = "B is working";
+        } else if(pressB) {
+            isBWork = "B is working";
+            //return to original position
             fingers.setPosition(1.0);
         }
 
-        telemetry.addData("Output"   , log);
+        telemetry.addData("Output", isAWork);
+        telemetry.addData("Output", isBWork);
         //
 
         //   }

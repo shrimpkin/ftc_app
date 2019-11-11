@@ -64,6 +64,7 @@ public class ArmControls extends OpMode
     private boolean MotorOn;
     private String log = "hello, arm in action";
 
+    static final double armSpeed = 4;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -86,30 +87,32 @@ public class ArmControls extends OpMode
          *used these two terminals just to test the arm movements.
          **/
 
-
-        frontLeftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        frontLeftWheel.setTargetPosition(255);
-        frontLeftWheel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //front left wheel is the top joint
 
 
+        double x = frontLeftWheel.getCurrentPosition();
 
         //Accessing left joy stick on gamepad1(NOTE: This can be changed to gamepad2 in the future)
-        double leftJoy = -(gamepad1.left_stick_y);
+        double leftJoy = -(gamepad2.left_stick_y);
         //Accessing right joy stick on gamepad1 (NOTE: This can be changed to gamepad2 in the future)
-        double rightJoy = -(gamepad1.right_stick_y);
+        double rightJoy = -(gamepad2.right_stick_y);
 
+        double y = leftJoy;
+        //the motor is moving to fast but if we lower the power it can't move the arm upward
         //sending power to frontLeftWheel (NOTE: will change to lowerArmMotor)
-        frontLeftWheel.setPower(leftJoy);
+        frontLeftWheel.setPower(y);
         //sending power to frontRightWheel(NOTE: will change to lowerArmMotor)
         frontRightWheel.setPower(rightJoy);
+
         double leftPower = frontLeftWheel.getPower();
         double rightPower = frontRightWheel.getPower();
 
         telemetry.addData("Output:", log);
         telemetry.addData("left Joy:", leftJoy);
-        telemetry.addData("right Joy", rightJoy);
-        telemetry.addData("left Power", leftPower);
-        telemetry.addData("right Power", rightPower);
+        telemetry.addData("right Joy:", rightJoy);
+        telemetry.addData("left Power:", leftPower);
+        telemetry.addData("right Power:", rightPower);
+        telemetry.addData("current Position", x);
 
 
     }

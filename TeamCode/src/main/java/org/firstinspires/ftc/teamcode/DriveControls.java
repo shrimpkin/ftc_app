@@ -53,15 +53,10 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 public class DriveControls extends OpMode
 {
     // Declare OpMode members.
-
-    private DcMotorController dc_motor;
     private DcMotor frontLeftWheel;
     private DcMotor backLeftWheel;
     private DcMotor frontRightWheel;
     private DcMotor backRightWheel;
-    private DcMotor frontMotorLeft;
-    private DcMotor frontMotorRight;
-    private boolean MotorOn;
     private String log = "Fields Initialized";
 
 
@@ -70,21 +65,15 @@ public class DriveControls extends OpMode
      */
     @Override
     public void init() {
-
-        MotorOn = false;
-
         //maps each dcMotor to the corresponding name listed on the "Configure Robot"
         frontLeftWheel = hardwareMap.dcMotor.get("frontLeft");
         backRightWheel = hardwareMap.dcMotor.get("backRight");
         frontRightWheel = hardwareMap.dcMotor.get("frontRight");
         backLeftWheel =  hardwareMap.dcMotor.get("backLeft");
-        frontMotorLeft = hardwareMap.dcMotor.get("frontMotorLeft");
-        frontMotorRight = hardwareMap.dcMotor.get("frontMotorRight");
 
 
         log = "hardwareMapped";
         telemetry.addData("Out put", log);
-
     }
 
     /*
@@ -102,6 +91,7 @@ public class DriveControls extends OpMode
 
         //getting horiz position of right joystick
         float right = -gamepad1.left_stick_y;
+
 
         //Doing the math to find the power value we need to set
         float temp = (float) (forward* (Math.cos(clockwise)) + right* (Math.sin(clockwise)));
@@ -134,11 +124,16 @@ public class DriveControls extends OpMode
             rear_right = -1;
         }
 
+        telemetry.addData("rear left", rear_left);
+        telemetry.addData("front left", -front_left);
+        telemetry.addData("rear right", -rear_right);
+        telemetry.addData("front right", front_right);
+
         //Assigns power value to each wheel
         backLeftWheel.setPower(rear_left);
         frontLeftWheel.setPower(-front_left);
-        backRightWheel.setPower(-rear_right);
-        frontRightWheel.setPower(front_right);
+        backRightWheel.setPower(rear_right);
+        frontRightWheel.setPower(-front_right);
 
     }
 

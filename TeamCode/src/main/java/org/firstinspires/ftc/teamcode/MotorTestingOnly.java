@@ -33,14 +33,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotorController;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
-import java.lang.Math;
-
 
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
@@ -58,7 +50,7 @@ import java.lang.Math;
 
 @TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
 //@Disabled
-public class RotatingServos extends OpMode
+public class MotorTestingOnly extends OpMode
 {
     // Declare OpMode members.
 
@@ -67,14 +59,8 @@ public class RotatingServos extends OpMode
     private DcMotor backLeftWheel;
     private DcMotor frontRightWheel;
     private DcMotor backRightWheel;
-    private DcMotor frontMotorLeft;
-    private DcMotor frontMotorRight;
     private boolean MotorOn;
-    private String log = "hello, arm in action";
-
-    //used for picking up block
-    private Servo fingers;
-    private double servoPosition = 0.0;
+    private String log = "Fields Initialized";
 
 
     /*
@@ -82,7 +68,18 @@ public class RotatingServos extends OpMode
      */
     @Override
     public void init() {
-        fingers = hardwareMap.servo.get("servo");
+
+        MotorOn = false;
+
+        //maps each dcMotor to the corresponding name listed on the "Configure Robot"
+        frontLeftWheel = hardwareMap.dcMotor.get("frontLeft");
+        backRightWheel = hardwareMap.dcMotor.get("backRight");
+        frontRightWheel = hardwareMap.dcMotor.get("frontRight");
+        backLeftWheel =  hardwareMap.dcMotor.get("backLeft");
+
+
+        log = "hardwareMapped";
+        telemetry.addData("Out put", log);
     }
 
     /*
@@ -90,16 +87,18 @@ public class RotatingServos extends OpMode
      */
     @Override
     public void loop() {
+        // The following allows for controlling mechanm wheels
 
-        //Accessing Gamepad joystick
-        double left_joystike_y = gamepad1.left_stick_y;
-        servoPosition = left_joystike_y;
-        fingers.setPosition(1.0);
+        //getting horizontal position of left joystick
+        float motorT1 = gamepad1.right_stick_x;
 
-        telemetry.addData("Out put"   , log);
-        //     if(servo){
+        //getting vertical position of left joystick
+       // float forward = gamepad1.left_stick_x;
 
-        //   }
+        //getting horiz position of right joystick
+        //float right = -gamepad1.left_stick_y;
+
+
 
     }
 

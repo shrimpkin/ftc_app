@@ -126,10 +126,10 @@ public class TryingToMove extends OpMode
             rear_right = -1;
         }
         //-------------------------------------
-        frontLeftWheel.setPower(-front_left);
+        frontLeftWheel.setPower(front_left);
         backLeftWheel.setPower(front_right);
         frontRightWheel.setPower(rear_left);
-        backRightWheel.setPower(-rear_right);
+        backRightWheel.setPower(rear_right);
 
 
         //code for sucking in a brick, a is in, b is stop, x is out
