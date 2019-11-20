@@ -76,8 +76,8 @@ public class Testcode extends OpMode
      */
     @Override
     public void init() {
-        frontMotorLeft = hardwareMap.dcMotor.get("frontMotorLeft");
-        frontMotorRight = hardwareMap.dcMotor.get("frontMotorRight");
+//        frontMotorLeft = hardwareMap.dcMotor.get("frontMotorLeft");
+//        frontMotorRight = hardwareMap.dcMotor.get("frontMotorRight");
     }
 
     /*
@@ -85,13 +85,14 @@ public class Testcode extends OpMode
      */
     @Override
     public void loop() {
-        //Accessing Gamepad joystick
-        float left_joystike_y = gamepad1.left_stick_y;
-        // float left_joystike_x = gamepad1.left_stick_x;
-
-        frontMotorLeft.setPower(left_joystike_y);
-        telemetry.addData("joy data",left_joystike_y );
-        // arm_upperMotor.setPower(left_joystike_y);
+        telemetry.addData("Output", "code is running..");
+//        //Accessing Gamepad joystick
+//        float left_joystike_y = gamepad1.left_stick_y;
+//        // float left_joystike_x = gamepad1.left_stick_x;
+//
+//        frontMotorLeft.setPower(left_joystike_y);
+//        telemetry.addData("joy data",left_joystike_y );
+//        // arm_upperMotor.setPower(left_joystike_y);
     }
 
 }
